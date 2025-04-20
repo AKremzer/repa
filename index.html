@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генератор сомнительного характера</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+    .card {
+        background-color: #f9f9f9;
+        padding: 20px;
+        margin: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        width: 260px; /* стало шире */
+        height: auto;
+        text-align: center;
+        opacity: 0;
+        animation: fadeIn 0.5s forwards;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card h3 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: normal;
+    }
+
+    .flags {
+        margin-top: 10px;
+        text-align: center;
+        font-size: 14px;
+        width: 100%;
+    }
+
+    .flag {
+        background-color: #f56565;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 8px;
+        margin: 5px 0;
+        text-align: center;
+        display: inline-block;
+        width: 100%;
+        font-size: 13px;
+    }
+
+    @keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    }
+
+.card {
+    opacity: 0; /* Начинаем с прозрачности */
+    transform: translateY(30px); /* Начинаем с сдвигом вниз */
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.card.delay {
+    animation-delay: 0.2s; /* Задержка, установленная динамически через JS */
+}
+
+    #warningModal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.4);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        opacity: 0;
+        animation: fadeInModal 0.5s forwards;
+    }
+
+    #warningModal .modalContent {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        width: 300px;
+    }
+
+    @keyframes fadeInModal {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+</style>
+</head>
+<body class="flex items-center justify-center h-screen bg-gray-100">
+
+    <div class="container text-center">
+        <h1 class="text-3xl mb-4">Генератор сомнительной личности</h1>
+
+        <div class="mb-4">
+            <label for="numTraits" class="mr-2">Число черт характера:</label>
+            <input type="number" id="numTraits" min="1" max="10" value="3" class="border p-2 rounded">
+        </div>
+
+        <button id="generateBtn" class="bg-blue-500 text-white px-4 py-2 rounded">Показать черты</button>
+
+        <div id="selectedTraits" class="mt-10 flex flex-wrap justify-center"></div>
+    </div>
+
+    <!-- Модальное окно -->
+    <div id="warningModal" class="flex">
+        <div class="modalContent">
+            <p class="text-lg">Обнаружено более одного серьезного недостатка - уверены, что хотите этого для своего чада?</p>
+            <button id="closeModalBtn" class="bg-red-500 text-white px-4 py-2 mt-4 rounded">Да, я плохая мать</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
