@@ -117,6 +117,7 @@ function displayTraits(selectedTraits) {
         trait.flags.some(flag =>
             flag === "Психическое расстройство" ||
             flag === "Потенциально опасен для себя" ||
+            flag === "Зависимость" ||
             flag === "Потенциально опасен для других"
         )
     ).length;
